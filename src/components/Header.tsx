@@ -6,19 +6,19 @@ export default function Header() {
       <nav>
         <ul className="header-nav">
           <li>
-            <a className="card-header-nav-contents" href="/">Home</a>
+            <a className="card-header-nav-contents" href="/place">Home</a>
           </li>
           <li>
-            <a className="card-header-nav-contents" href="/About_me">About me</a>
+            <a className="card-header-nav-contents" href="/place/About_me">About me</a>
           </li>
           <li>
-            <a className="card-header-nav-contents" href="/Contact">Contact</a>
+            <a className="card-header-nav-contents" href="/place/Contact">Contact</a>
           </li>
           <li>
-            <a className="card-header-nav-contents" href="/Works">Works</a>
+            <a className="card-header-nav-contents" href="/place/Works">Works</a>
           </li>
           <li>
-            <a className="card-header-nav-contents" href="/articles">Articles</a>
+            <a className="card-header-nav-contents" href="/place/articles">Articles</a>
           </li>
         </ul>
       </nav>
