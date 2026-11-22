@@ -1,0 +1,36 @@
+---
+import type { ArticleEntry } from '../lib/articles'
+import Layout from './Layout'
+import ArticleHeader from '../components/articles/ArticleHeader.astro'
+import ArticleNavigation from '../components/articles/ArticleNavigation.astro'
+import '../css/ArticleDetail.css'
+
+interface Props {
+    article: ArticleEntry
+    previous?: ArticleEntry
+    next?: ArticleEntry
+}
+
+const { article, previous, next } = Astro.props
+---
+
+<Layout>
+    <article class="article-detail">
+        <div class="article-detail-topline">
+            <a class="article-detail-back" href="/articles">← Back to Articles</a>
+            <span aria-hidden="true">Reading journal</span>
+        </div>
+
+        <div class="article-detail-sheet">
+            <ArticleHeader article={article} />
+
+            <section class="article-detail-paper" aria-label="Article body">
+                <div class="article-detail-prose">
+                    <slot />
+                </div>
+            </section>
+
+            <ArticleNavigation previous={previous} next={next} />
+        </div>
+    </article>
+</Layout>

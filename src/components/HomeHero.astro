@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets'
+import homeBackground from '../assets/home_background.png'
+
+interface Props {
+    showCopy?: boolean
+    showTitle?: boolean
+}
+
+const { showCopy = true, showTitle = true } = Astro.props
+---
+
+<section
+    class="home-hero"
+    aria-labelledby={showTitle ? 'home-title' : undefined}
+    aria-label={showTitle ? undefined : 'Liblue home'}
+>
+    <div class="home-art-layer" aria-hidden="true">
+        <Image
+            class="home-art-backdrop"
+            src={homeBackground}
+            alt=""
+            layout="full-width"
+            loading="eager"
+            fetchpriority="high"
+        />
+        <Image
+            class="home-artwork"
+            src={homeBackground}
+            alt=""
+            layout="full-width"
+            loading="eager"
+            fetchpriority="high"
+        />
+    </div>
+
+    <div class="home-content">
+        {showTitle && <h1 id="home-title" class="home-title">Liblue</h1>}
+
+        {
+            showCopy && (
+                <p class="home-welcome">
+                    Welcome<br />To<br />My<br />Studio
+                </p>
+            )
+        }
+
+        {
+            showCopy && (
+                <div class="home-introduction">
+                    <p>Here is Ishiyama Akio's homepage.</p>
+                    <p>Be free to get around here.</p>
+                </div>
+            )
+        }
+    </div>
+</section>

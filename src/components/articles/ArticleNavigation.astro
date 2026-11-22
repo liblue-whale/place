@@ -1,0 +1,29 @@
+---
+import type { ArticleEntry } from '../../lib/articles'
+import { getArticleHref } from '../../lib/articles'
+
+interface Props {
+    previous?: ArticleEntry
+    next?: ArticleEntry
+}
+
+const { previous, next } = Astro.props
+---
+
+{(previous || next) && (
+    <nav class="article-detail-navigation" aria-label="Article navigation">
+        {previous ? (
+            <a class="article-detail-nav-card article-detail-nav-previous" href={getArticleHref(previous)}>
+                <span>← Previous article</span>
+                <strong>{previous.data.title}</strong>
+            </a>
+        ) : null}
+
+        {next ? (
+            <a class="article-detail-nav-card article-detail-nav-next" href={getArticleHref(next)}>
+                <span>Next article →</span>
+                <strong>{next.data.title}</strong>
+            </a>
+        ) : null}
+    </nav>
+)}

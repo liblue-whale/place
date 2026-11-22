@@ -1,0 +1,25 @@
+---
+import type { ArticleEntry } from '../../lib/articles'
+import {
+    formatArticleDate,
+    getArticleHref,
+    getArticleRatio,
+} from '../../lib/articles'
+
+interface Props {
+    article: ArticleEntry
+}
+
+const { article } = Astro.props
+const { title, description, publishedAt, cover, coverAlt } = article.data
+const ratio = getArticleRatio(article)
+---
+
+<article class:list={['article-card', `ratio-${ratio}`]}>
+    <a class="article-card-link" href={getArticleHref(article)}>
+        <img src={cover.src} alt={coverAlt} />
+        <h2>{title}</h2>
+        <p class="description">{description}</p>
+        <time datetime={publishedAt.toISOString()}>{formatArticleDate(publishedAt)}</time>
+    </a>
+</article>

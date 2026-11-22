@@ -1,0 +1,473 @@
+/* =========================
+   Article.css
+   ========================= */
+
+
+/* ---------- Page ---------- */
+
+.articles-page {
+  width: min(1000px, 90vw);
+  margin: 0 auto;
+  padding: 7rem 0 14rem;
+
+  color: cadetblue;
+}
+
+
+/* ---------- Page heading ---------- */
+
+.articles-title {
+  margin: 0;
+
+  font-size: clamp(5rem, 10vw, 9rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+
+  color: cadetblue;
+  text-align: left;
+}
+
+.articles-introduction {
+  max-width: 40rem;
+
+  margin: 2rem 0 10rem;
+
+  font-size: 1.3rem;
+  line-height: 1.8;
+
+  color: cadetblue;
+  text-align: left;
+
+  opacity: 0.8;
+}
+
+
+/* =========================
+   Article list
+   ========================= */
+
+.article-list {
+  width: 86%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 11rem;
+}
+
+
+/* =========================
+   Card
+   ========================= */
+
+.article-card {
+  width: min(580px, 100%);
+  max-width: 100%;
+
+  box-sizing: border-box;
+
+  background-color: #f2eee4;
+  color: #222;
+
+  border: 1px solid rgba(25, 25, 25, 0.75);
+  border-radius: 3px;
+
+  box-shadow:
+    8px 10px 0 rgba(0, 0, 0, 0.5),
+    0 18px 32px rgba(0, 0, 0, 0.28);
+
+  text-align: left;
+
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.article-card-link {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 2rem 2rem 1.8rem;
+
+  color: inherit;
+  text-decoration: none;
+}
+
+.article-card-link:focus-visible {
+  outline: 3px solid #83aeb0;
+  outline-offset: 6px;
+}
+
+
+/* =========================
+   Card sizes
+   ========================= */
+
+
+/* 縦写真 */
+.article-card.ratio-3-4 {
+  width: min(540px, 100%);
+}
+
+
+/* 横写真 */
+.article-card.ratio-4-3 {
+  width: min(740px, 100%);
+}
+
+
+/* 正方形 */
+.article-card.ratio-1-1 {
+  width: min(480px, 100%);
+}
+
+
+/* =========================
+   Card position
+   ========================= */
+
+.article-card:nth-child(odd) {
+  transform:
+    translateX(-24px)
+    rotate(-0.35deg);
+}
+
+.article-card:nth-child(even) {
+  transform:
+    translateX(24px)
+    rotate(0.35deg);
+}
+
+
+/*
+ * 横長カードは十分存在感があるので、
+ * 左右移動を弱くする
+ */
+.article-card.ratio-4-3:nth-child(odd) {
+  transform:
+    translateX(-10px)
+    rotate(-0.2deg);
+}
+
+.article-card.ratio-4-3:nth-child(even) {
+  transform:
+    translateX(10px)
+    rotate(0.2deg);
+}
+
+
+/* =========================
+   Hover
+   ========================= */
+
+.article-card:nth-child(odd):hover {
+  transform:
+    translateX(-27px)
+    translateY(-5px)
+    rotate(-0.35deg);
+}
+
+.article-card:nth-child(even):hover {
+  transform:
+    translateX(27px)
+    translateY(-5px)
+    rotate(0.35deg);
+}
+
+.article-card.ratio-4-3:nth-child(odd):hover {
+  transform:
+    translateX(-12px)
+    translateY(-5px)
+    rotate(-0.2deg);
+}
+
+.article-card.ratio-4-3:nth-child(even):hover {
+  transform:
+    translateX(12px)
+    translateY(-5px)
+    rotate(0.2deg);
+}
+
+.article-card:hover {
+  box-shadow:
+    11px 14px 0 rgba(0, 0, 0, 0.55),
+    0 24px 40px rgba(0, 0, 0, 0.32);
+}
+
+
+/* =========================
+   Image
+   ========================= */
+
+.article-card img {
+  display: block;
+
+  /*
+   * カードいっぱいには広げない。
+   * 「中に写真が置かれている」状態。
+   */
+  width: 100%;
+  max-width: 100%;
+
+  margin:
+    0
+    auto
+    2.4rem;
+
+  object-fit: cover;
+
+  background-color: white;
+
+  border: 1px solid rgba(25, 25, 25, 0.45);
+
+  box-shadow:
+    0 5px 12px rgba(0, 0, 0, 0.12);
+}
+
+
+/* 縦撮り */
+
+.article-card.ratio-3-4 img {
+  width: 82%;
+  aspect-ratio: 3 / 4;
+}
+
+
+/* 横撮り */
+
+.article-card.ratio-4-3 img {
+  width: 90%;
+  aspect-ratio: 4 / 3;
+}
+
+
+/* 正方形 */
+
+.article-card.ratio-1-1 img {
+  width: 78%;
+  aspect-ratio: 1 / 1;
+}
+
+
+/* =========================
+   Title
+   ========================= */
+
+.article-card h2 {
+  margin: 0;
+
+  font-size: clamp(2.8rem, 4.5vw, 4.5rem);
+  line-height: 0.98;
+
+  font-weight: 700;
+  letter-spacing: -0.035em;
+
+  overflow-wrap: anywhere;
+}
+
+.article-card-link:hover h2 {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+
+/* =========================
+   Description
+   ========================= */
+
+.article-card .description {
+  max-width: 36rem;
+
+  margin: 1.5rem 0 0;
+
+  font-size: 1.2rem;
+  line-height: 1.7;
+
+  color: #474747;
+}
+
+
+/* =========================
+   Date
+   ========================= */
+
+.article-card time {
+  display: block;
+
+  margin-top: 2.5rem;
+
+  font-size: 0.9rem;
+  line-height: 1;
+
+  letter-spacing: 0.08em;
+
+  color: #666;
+
+  text-align: right;
+}
+
+
+/* =========================
+   Tablet
+   ========================= */
+
+@media (max-width: 900px) {
+
+  .articles-page {
+    width: 90vw;
+  }
+
+  .article-card.ratio-3-4 {
+    width: min(520px, 100%);
+  }
+
+  .article-card.ratio-4-3 {
+    width: min(680px, 100%);
+  }
+
+  .article-card.ratio-1-1 {
+    width: min(460px, 100%);
+  }
+
+  .article-card:nth-child(odd) {
+    transform:
+      translateX(-14px)
+      rotate(-0.3deg);
+  }
+
+  .article-card:nth-child(even) {
+    transform:
+      translateX(14px)
+      rotate(0.3deg);
+  }
+}
+
+
+/* =========================
+   Smartphone
+   ========================= */
+
+@media (max-width: 650px) {
+
+  .articles-page {
+    width: 88vw;
+
+    padding-top: 7rem;
+    padding-bottom: 10rem;
+  }
+
+  .articles-title {
+    font-size: clamp(4rem, 18vw, 6.5rem);
+  }
+
+  .articles-introduction {
+    margin-bottom: 8rem;
+
+    font-size: 1.05rem;
+    line-height: 1.9;
+  }
+
+  .article-list {
+    gap: 8.5rem;
+  }
+
+
+  /* スマホではカード幅は画面に合わせる */
+
+  .article-card,
+  .article-card.ratio-3-4,
+  .article-card.ratio-4-3,
+  .article-card.ratio-1-1 {
+    width: 92%;
+  }
+
+
+  /* スマホでも少し傾ける */
+
+  .article-card:nth-child(odd) {
+    transform:
+      translateX(-4px)
+      rotate(-0.45deg);
+  }
+
+  .article-card:nth-child(even) {
+    transform:
+      translateX(4px)
+      rotate(0.45deg);
+  }
+
+  .article-card.ratio-4-3:nth-child(odd) {
+    transform:
+      translateX(-3px)
+      rotate(-0.25deg);
+  }
+
+  .article-card.ratio-4-3:nth-child(even) {
+    transform:
+      translateX(3px)
+      rotate(0.25deg);
+  }
+
+
+  /* hoverできる端末でも暴れない */
+
+  .article-card:nth-child(odd):hover {
+    transform:
+      translateX(-4px)
+      translateY(-3px)
+      rotate(-0.45deg);
+  }
+
+  .article-card:nth-child(even):hover {
+    transform:
+      translateX(4px)
+      translateY(-3px)
+      rotate(0.45deg);
+  }
+
+
+  .article-card-link {
+    padding: 1.75rem 1.5rem 1.7rem;
+  }
+
+  .article-card {
+    box-shadow:
+      5px 7px 0 rgba(0, 0, 0, 0.5),
+      0 13px 24px rgba(0, 0, 0, 0.25);
+  }
+
+
+  /* スマホでも画像の周囲に紙を見せる */
+
+  .article-card img {
+    margin-bottom: 2.2rem;
+  }
+
+  .article-card.ratio-3-4 img {
+    width: 82%;
+  }
+
+  .article-card.ratio-4-3 img {
+    width: 90%;
+  }
+
+  .article-card.ratio-1-1 img {
+    width: 78%;
+  }
+
+
+  .article-card h2 {
+    font-size: clamp(2.2rem, 9.2vw, 3.4rem);
+  }
+
+  .article-card .description {
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  .article-card time {
+    margin-top: 2.25rem;
+  }
+}

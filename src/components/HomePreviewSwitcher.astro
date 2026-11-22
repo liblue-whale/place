@@ -1,0 +1,27 @@
+---
+import {
+    homePreviewLabels,
+    homePreviewVariants,
+    type HomePreviewVariant,
+} from '../data/homePreview'
+
+type Props = {
+    current: HomePreviewVariant
+}
+
+const { current } = Astro.props
+---
+
+<nav class="preview-switcher" aria-label="Switch Home preview">
+    <span class="preview-switcher-label">Compare</span>
+    {homePreviewVariants.map((variant) => (
+        <a
+            href={`/home-${variant}`}
+            class:list={{ active: variant === current }}
+            aria-current={variant === current ? "page" : undefined}
+        >
+            {homePreviewLabels[variant]}
+        </a>
+    ))}
+    <a href="/">Home</a>
+</nav>

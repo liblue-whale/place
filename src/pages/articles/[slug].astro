@@ -1,0 +1,57 @@
+---
+import { getCollection, render } from 'astro:content'
+import '../../css/style.css'
+import ArticleLayout from '../../layouts/ArticleLayout.astro'
+import {
+    getArticleSlug,
+    sortArticles,
+    type ArticleEntry,
+} from '../../lib/articles'
+
+interface Props {
+    article: ArticleEntry
+    previous?: ArticleEntry
+    next?: ArticleEntry
+}
+
+export async function getStaticPaths() {
+    const articles = sortArticles(
+        await getCollection('articles', ({ data }) => import.meta.env.DEV || !data.draft),
+    )
+
+    return articles.map((article, index) => ({
+        params: { slug: getArticleSlug(article) },
+        props: {
+            article,
+            previous: articles[index + 1],
+            next: articles[index - 1],
+        },
+    }))
+}
+
+const { article, previous, next } = Astro.props
+const { Content } = await render(article)
+const { title, description, cover, lang } = article.data
+---
+
+<html lang={lang}>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="description" content={description} />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={cover.src} />
+        <title>{title} | Liblue</title>
+    </head>
+
+    <body class="article-detail-page">
+        <ArticleLayout article={article} previous={previous} next={next}>
+            <Content />
+        </ArticleLayout>
+    </body>
+</html>

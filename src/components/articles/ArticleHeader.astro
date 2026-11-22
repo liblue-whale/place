@@ -1,0 +1,32 @@
+---
+import type { ArticleEntry } from '../../lib/articles'
+import { formatArticleDate } from '../../lib/articles'
+
+interface Props {
+    article: ArticleEntry
+}
+
+const { article } = Astro.props
+const { title, description, publishedAt, updatedAt, cover, coverAlt } = article.data
+---
+
+<header class="article-detail-cover">
+    <div class="article-detail-meta">
+        <span>Article</span>
+        <div class="article-detail-dates">
+            <time datetime={publishedAt.toISOString()}>{formatArticleDate(publishedAt)}</time>
+            {updatedAt && (
+                <span>
+                    Updated <time datetime={updatedAt.toISOString()}>{formatArticleDate(updatedAt)}</time>
+                </span>
+            )}
+        </div>
+    </div>
+
+    <h1>{title}</h1>
+    <p class="article-detail-description">{description}</p>
+
+    <figure class="article-detail-cover-image">
+        <img src={cover.src} alt={coverAlt} />
+    </figure>
+</header>

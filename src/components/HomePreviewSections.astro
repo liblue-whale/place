@@ -1,0 +1,89 @@
+---
+import { Image } from 'astro:assets'
+import homeBackground from '../assets/home_background.png'
+import {
+    homePreviewContent,
+    type HomePreviewVariant,
+} from '../data/homePreview'
+
+type Props = {
+    variant: HomePreviewVariant
+}
+
+const { variant } = Astro.props
+---
+
+<div class:list={["home-preview-sections", `preview-${variant}`]}>
+    <section class="preview-section preview-about" aria-labelledby={`${variant}-about-title`}>
+        {variant === "zine" && (
+            <figure class="preview-zine-art preview-zine-art-about" aria-hidden="true">
+                <Image src={homeBackground} alt="" width={720} loading="lazy" />
+            </figure>
+        )}
+
+        <div class="preview-heading">
+            <span class="preview-number" aria-hidden="true">01</span>
+            <h2 id={`${variant}-about-title`}>About this place</h2>
+        </div>
+
+        <div class="preview-about-copy">
+            {homePreviewContent.about.map((paragraph) => (
+                <p>{paragraph}</p>
+            ))}
+        </div>
+    </section>
+
+    <section class="preview-section preview-now" aria-labelledby={`${variant}-now-title`}>
+        {variant === "zine" && (
+            <figure class="preview-zine-art preview-zine-art-now" aria-hidden="true">
+                <Image src={homeBackground} alt="" width={720} loading="lazy" />
+            </figure>
+        )}
+
+        <div class="preview-heading">
+            <span class="preview-number" aria-hidden="true">02</span>
+            <h2 id={`${variant}-now-title`}>Now</h2>
+        </div>
+
+        <div class="preview-now-list">
+            {homePreviewContent.now.map((item) => (
+                <article class="preview-now-item">
+                    <h3>{item.label}</h3>
+                    <p>{item.text}</p>
+                </article>
+            ))}
+        </div>
+    </section>
+
+    <section class="preview-section preview-explore" aria-labelledby={`${variant}-explore-title`}>
+        {variant === "zine" && (
+            <figure class="preview-zine-art preview-zine-art-explore" aria-hidden="true">
+                <Image src={homeBackground} alt="" width={720} loading="lazy" />
+            </figure>
+        )}
+
+        <div class="preview-heading">
+            <span class="preview-number" aria-hidden="true">03</span>
+            <h2 id={`${variant}-explore-title`}>Explore</h2>
+        </div>
+
+        <nav class="preview-link-list" aria-label="Explore this site">
+            <ol>
+                {homePreviewContent.links.map((link, index) => (
+                    <li>
+                        <a href={link.href}>
+                            <span class="preview-link-number" aria-hidden="true">
+                                {String(index + 1).padStart(2, "0")}
+                            </span>
+                            <span class="preview-link-copy">
+                                <strong>{link.label}</strong>
+                                <small>{link.description}</small>
+                            </span>
+                            <span class="preview-link-arrow" aria-hidden="true">→</span>
+                        </a>
+                    </li>
+                ))}
+            </ol>
+        </nav>
+    </section>
+</div>

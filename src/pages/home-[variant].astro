@@ -1,0 +1,47 @@
+---
+import '../css/style.css'
+import '../css/HomePreview.css'
+import HomeHero from '../components/HomeHero.astro'
+import HomePreviewSections from '../components/HomePreviewSections.astro'
+import HomePreviewSwitcher from '../components/HomePreviewSwitcher.astro'
+import Layout from '../layouts/Layout'
+import {
+    homePreviewLabels,
+    homePreviewVariants,
+    type HomePreviewVariant,
+} from '../data/homePreview'
+
+type Props = {
+    variant: HomePreviewVariant
+}
+
+export function getStaticPaths() {
+    return homePreviewVariants.map((variant) => ({
+        params: { variant },
+        props: { variant },
+    }))
+}
+
+const { variant } = Astro.props
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="robots" content="noindex" />
+        <title>{homePreviewLabels[variant]} Home Preview | Liblue</title>
+    </head>
+
+    <body class:list={["home-page", "home-preview-page", `home-preview-page-${variant}`]}>
+        <Layout>
+            <HomeHero showCopy={variant !== "paper"} showTitle={variant !== "paper"} />
+            <HomePreviewSections variant={variant} />
+        </Layout>
+
+        <HomePreviewSwitcher current={variant} />
+    </body>
+</html>

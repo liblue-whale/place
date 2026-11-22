@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content'
+import '../../css/style.css'
+import '../../css/Article.css'
+import ArticleList from '../../components/articles/ArticleList.astro'
+import Layout from '../../layouts/Layout'
+import { sortArticles } from '../../lib/articles'
+
+const articles = sortArticles(
+    await getCollection('articles', ({ data }) => import.meta.env.DEV || !data.draft),
+)
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="description" content="Essays, reading notes, and records from Liblue." />
+        <title>Articles | Liblue</title>
+    </head>
+
+    <body>
+        <Layout>
+            <section class="articles-page">
+                <h1 class="articles-title">Articles</h1>
+                <p class="articles-introduction">You can read my articles here.</p>
+                <ArticleList articles={articles} />
+            </section>
+        </Layout>
+    </body>
+</html>

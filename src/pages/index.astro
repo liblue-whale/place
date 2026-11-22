@@ -1,4 +1,7 @@
 ---
+import '../css/style.css'
+import HomeHero from '../components/HomeHero.astro'
+import Layout from "../layouts/Layout"
 ---
 
 <html lang="en">
@@ -8,9 +11,11 @@
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Liblue</title>
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body class="home-page">
+		<Layout>
+			<HomeHero />
+		</Layout>
 	</body>
 </html>

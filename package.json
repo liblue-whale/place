@@ -12,6 +12,14 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.4.13"
+    "@astrojs/react": "^7.1.9",
+    "astro": "^7.4.13",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-obfuscate": "^3.7.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0"
   }
 }
