@@ -1,24 +1,26 @@
 ---
-import '../css/style.css'
-import Mail from "../components/Mail"
-import Header from "../components/Header"
+import "../css/style.css";
+import Header from "../components/Header";
 ---
 
 <html lang="Ja">
-    <meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Contact</title>
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" href="/favicon.ico" />
+	<meta name="viewport" content="width=device-width" />
+	<meta name="generator" content={Astro.generator} />
+	<title>Contact</title>
 
-    <body>
-        <div>
-			<Header/>
-			<h1 style="font-size:7rem;margin-top: 5rem;margin-bottom: 0;">Works</h1>
-			<h3 style="margin: 0px;">When you have something to me, please contact me here.</h3>
-			<hr style="width: 100%"/>
-			<Mail client:only="react" />
+	<body>
+		<div>
+			<Header />
+			<h1 style="font-size:7rem;margin-top: 5rem;margin-bottom: 0;">
+				Works
+			</h1>
+			<h3 style="margin: 0px;">
+				When you have something to me, please contact me here.
+			</h3>
+			<hr style="width: 100%" />
 		</div>
-    </body>
+	</body>
 </html>
